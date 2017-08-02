@@ -1928,6 +1928,51 @@ angular.module('starter.controllers', [])
         });
     };
 
+    function onDeviceReady() {
+        $('#contact').click(function () {
+            try {
+                var contact = navigator.contacts.create({ "displayName": "Sant Just" });
+                var phoneNumbers = [];
+                phoneNumbers[0] = new ContactField('mobile', '0034 977371151 ', true); // preferred number
+                var emails = [];
+                emails[0] = new ContactField('emails', 'ventas@sant-just.com', true);
+                contact.emails = emails;
+
+                var addresses = [];
+                addresses[0] = new ContactAddress('addresses', 'Avenida Pau Casals 113 La Pineda 43481 Tarragona Spain');
+                contact.addresses = addresses;
+
+                var urls = [];
+                urls[0] = new ContactField('other', 'ventas@sant-just.com', true);
+                contact.urls = urls;
+
+                contact.phoneNumbers = phoneNumbers;
+                contact.save();
+                //alert("Contacto creado con exito! Por favor, verifique el contacto con el nombre 'Sant Just' en su lista de contactos ");
+                var message = "Contacto creado con exito! Por favor, verifique el contacto con el nombre 'Sant Just' en su lista de contactos ";
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Mensaje',
+                    template: message
+                });
+                alertPopup.then(function (res) {
+
+                });
+            }
+            catch (err) {
+                //alert("Plugin Error - " + err.message);
+                var message = "Plugin Error - " + err.message.toString();
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Mensaje',
+                    template: message
+                });
+                alertPopup.then(function (res) {
+
+                });
+            }
+
+        });
+    }
+
     $scope.myRequests = function () {
         var email = sessionStorage.getItem('emailLogin');
 
