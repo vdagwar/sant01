@@ -1,6 +1,6 @@
 /* global angular, document, window */
 'use strict';
-var serviceBase = "http://sanjust.azurewebsites.net/";
+var serviceBase = "http://sanjustapi.azurewebsites.net/";
 //var serviceBase = "http://localhost:17543/"
 angular.module('starter.controllers', [])
 
@@ -1721,8 +1721,8 @@ angular.module('starter.controllers', [])
         if (Price.indexOf(',') !== -1) {
             Price = Price.replace(',', '');
         }
-        if (Price.indexOf('€') !== -1) {
-            Price = Price.replace('€', '');
+        if (Price.indexOf('Â€') !== -1) {
+            Price = Price.replace('Â€', '');
         }
         if (Price == "" || Price == undefined) {
             $scope.showAlert("Precio de venta Euro");
